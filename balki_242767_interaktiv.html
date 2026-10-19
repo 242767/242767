@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#071326">
+<meta name="description" content="Balki… — xotiralar, oy nuri va kichik bir interaktiv hikoya.">
+<title>Balki… | 242767</title>
+<style>
+:root{--bg:#071326;--bg2:#10213b;--paper:#f4f0e8;--muted:#b9c4d7;--gold:#d9c59a;--pink:#d7a8b7;--line:rgba(244,240,232,.16)}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;min-height:100vh;min-height:100dvh;color:var(--paper);font-family:Georgia,"Times New Roman",serif;background:radial-gradient(ellipse at 50% 8%,#243a5b 0%,transparent 43%),linear-gradient(155deg,var(--bg2),var(--bg) 68%);overflow-x:hidden}
+button{font:inherit}
+#sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.75}
+.wrap{position:relative;z-index:1;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:26px 18px calc(28px + env(safe-area-inset-bottom))}
+.app{width:100%;max-width:490px;margin:auto}
+.topline{display:flex;align-items:center;justify-content:space-between;font:10px/1.5 system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#b9c6da;margin-bottom:28px}
+.pip{display:inline-flex;align-items:center;gap:7px}.pip:before{content:"";width:5px;height:5px;background:var(--gold);border-radius:50%;box-shadow:0 0 10px var(--gold)}
+.screen{animation:appear .6s ease both}.hide{display:none!important}
+@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero{text-align:center}
+.moon{position:relative;width:112px;height:112px;margin:0 auto 28px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fffdf2,#e3e5e2 43%,#a9b9d0 78%,#778ba9);box-shadow:0 0 34px #dbe6ff2b,0 0 100px #94b8ef17}
+.moon:after{content:"";position:absolute;inset:-5px auto auto 31px;width:105px;height:105px;border-radius:50%;background:#10213b;opacity:.95}
+h1{font-weight:400;font-size:clamp(34px,9vw,48px);letter-spacing:-.035em;line-height:1.13;margin:0 0 17px}
+h2{font-weight:400;font-size:clamp(27px,7vw,35px);line-height:1.2;margin:0 0 17px}
+.eyebrow{font:10px/1.5 system-ui,sans-serif;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.copy{font-size:17px;line-height:1.82;color:var(--muted);max-width:370px;margin:0 auto 27px}
+.actions{display:flex;flex-direction:column;gap:10px;width:100%;max-width:330px;margin:0 auto}
+.btn{min-height:48px;padding:13px 17px;border:1px solid #f4f0e84d;border-radius:999px;color:var(--paper);background:#f4f0e80a;font:13px/1.45 system-ui,sans-serif;cursor:pointer;transition:transform .2s,background .2s,border-color .2s}
+.btn:hover,.btn:focus-visible{background:#f4f0e817;border-color:#f4f0e88a;outline:none}
+.btn:active{transform:scale(.985)}
+.btn.primary{background:var(--paper);color:#102039;border-color:var(--paper);font-weight:600}
+.btn.primary:hover{background:white}
+.btn.soft{border-color:transparent;background:transparent;color:#aebbd0}
+.note{font:11px/1.7 system-ui,sans-serif;color:#91a2bd;margin:19px auto 0;max-width:330px}
+.rule{height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 23px}
+.panel{border:1px solid var(--line);background:#0713267a;border-radius:23px;padding:27px 22px;box-shadow:0 16px 50px #00000012;backdrop-filter:blur(9px)}
+.icon{font-size:29px;color:var(--gold);margin-bottom:17px}
+.storytext{font-size:17px;line-height:1.88;color:#e8e7e1}
+.storytext p{margin:0 0 16px}.storytext p:last-child{margin-bottom:0}
+.progress{height:2px;background:#f4f0e81f;max-width:240px;margin:0 auto 25px;border-radius:5px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .35s}
+.pink-glow{height:100px;width:100px;border-radius:50%;margin:0 auto 24px;background:radial-gradient(circle,#f0cbd4aa 0%,#ce91a322 46%,transparent 72%);box-shadow:0 0 50px #e4a6b42b}
+.choices{display:grid;gap:10px;margin-top:23px}
+.choice{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid var(--line);background:#ffffff08;border-radius:15px;padding:14px;color:var(--paper);font:14px/1.5 system-ui,sans-serif;cursor:pointer;min-height:54px}
+.choice .emoji{font-size:19px;width:27px;text-align:center}
+.choice.selected{border-color:var(--gold);background:#d9c59a16}
+.result{font:13px/1.75 system-ui,sans-serif;color:#d4deeb;background:#ffffff0b;border-radius:13px;padding:13px;margin-top:15px}
+.endmark{font-size:22px;color:var(--gold);margin-bottom:15px}
+.footer{font:10px/1.7 system-ui,sans-serif;color:#8192ad;text-align:center;margin:28px 0 0}
+a{color:var(--gold)}
+@media(max-height:690px){.wrap{align-items:flex-start}.app{padding-top:5px}.topline{margin-bottom:18px}.moon{width:78px;height:78px;margin-bottom:18px}.moon:after{width:73px;height:73px;left:22px;top:-3px}.copy{margin-bottom:20px}.panel{padding:21px 18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main class="wrap"><div class="app">
+  <div class="topline"><span class="pip">kichik hikoya</span><span>242767</span></div>
+
+  <section class="screen hero" data-screen="0">
+    <div class="moon" aria-hidden="true"></div>
+    <div class="eyebrow">bir sirli sahifa</div>
+    <h1>Ba’zi hikoyalar<br>sekin ochiladi.</h1>
+    <p class="copy">Bu kichik sayohat xotiralar, bir kulgi va uzoqdagi oy haqida. Shoshilmay ko‘r — istagan payting to‘xtashing mumkin.</p>
+    <div class="actions"><button class="btn primary" data-next>Hikoyani ochish <span aria-hidden="true"> ↗</span></button><button class="btn soft" data-exit>Hozircha emas</button></div>
+    <p class="note">Hech qanday to‘g‘ri yoki noto‘g‘ri javob yo‘q. Bu shunchaki kichik hikoya.</p>
+  </section>
+
+  <section class="screen hide" data-screen="1">
+    <div class="eyebrow">01 / 2021</div><div class="progress"><span></span></div>
+    <div class="panel"><div class="icon">✦</div><h2>Tanish bo‘lgan begona</h2><div class="storytext">
+      <p>Ba’zi insonlarni yaxshi tanimasdan ham uzoq vaqt eslab yurish mumkin. Ularning hayotimizda qancha o‘rin egallaganini esa ba’zan o‘zimiz ham kech anglaymiz.</p>
+      <p>Bu hikoya taxminan 2021-yildan boshlangan. Ko‘p narsa xotirada qolmagan bo‘lishi mumkin, ammo ayrim lahzalar yillar o‘tsa ham o‘z rangini yo‘qotmaydi.</p>
+    </div></div>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" data-next>Keyingi xotira</button><button class="btn soft" data-exit>Shu yerda to‘xtash</button></div>
+  </section>
+
+  <section class="screen hide" data-screen="2">
+    <div class="eyebrow">02 / bir rang</div><div class="progress"><span></span></div>
+    <div class="panel"><div class="pink-glow"></div><h2>Pushti kurtka</h2><div class="storytext">
+      <p>Xotira ba’zan suratga o‘xshaydi: umumiy manzara ravshan, mayda tafsilotlar esa asta-sekin xiralashadi.</p>
+      <p>Bir rang, bir uchrashuv yoki oddiygina bir lahza — boshqalar uchun odatiy bo‘lgan narsa kimningdir xotirasida alohida joy topishi mumkin.</p>
+    </div></div>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" data-next>Yana davom etish</button><button class="btn soft" data-exit>Shu yerda to‘xtash</button></div>
+  </section>
+
+  <section class="screen hide" data-screen="3">
+    <div class="eyebrow">03 / tushdagi kulgi</div><div class="progress"><span></span></div>
+    <div class="panel"><div class="icon">☾</div><h2>Tushda ko‘ringan kulgi</h2><div class="storytext">
+      <p>Ba’zi manzaralar uyg‘ongandan keyin ham yodda qoladi. Nega aynan shu manzara? Balki u biz uchun nimanidir anglatgandir, balki shunchaki yoqimli bir xotiradir.</p>
+      <p>Tush boshqa insonning hislari haqida dalil emas. Lekin u o‘z ichimizdagi kechinmalarni anglashga yordam berishi mumkin.</p>
+    </div></div>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" data-next>Bir kichik savolga</button><button class="btn soft" data-exit>Shu yerda to‘xtash</button></div>
+  </section>
+
+  <section class="screen hide" data-screen="4">
+    <div class="eyebrow">04 / kichik tanaffus</div><div class="progress"><span></span></div>
+    <div class="panel"><div class="icon">✧</div><h2>Bir savol — faqat qiziqish uchun</h2><p class="copy" style="font-size:15px;margin-bottom:8px">Agar kechqurun bo‘sh vaqting bo‘lsa, qaysi kayfiyatni tanlarding?</p>
+      <div class="choices" id="moodChoices">
+        <button class="choice" data-choice="moon"><span class="emoji">🌙</span><span>Oy va sokin musiqa</span></button>
+        <button class="choice" data-choice="book"><span class="emoji">📖</span><span>Qiziqarli kitob yoki hikoya</span></button>
+        <button class="choice" data-choice="walk"><span class="emoji">🌃</span><span>Kechki sayr va toza havo</span></button>
+        <button class="choice" data-choice="laugh"><span class="emoji">✨</span><span>Kulgili video va yaxshi kayfiyat</span></button>
+      </div>
+      <div id="moodResult" class="result hide" aria-live="polite"></div>
+      <p class="note">Xohlasang tanla, xohlamasang bu savolni o‘tkazib yubor. Tanlov faqat shu sahifada qoladi.</p>
+    </div>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" data-next>Hikoyaning yakuni</button><button class="btn soft" data-exit>Shu yerda to‘xtash</button></div>
+  </section>
+
+  <section class="screen hide" data-screen="5">
+    <div class="eyebrow">05 / balki…</div><div class="progress"><span></span></div>
+    <div class="panel"><div class="icon">☾</div><h2>Oyga qarab</h2><div class="storytext">
+      <p>Ba’zan osmondagi oyga qaraymiz. U uzoqda bo‘lsa ham, nuri ko‘rinadi. Lekin har bir go‘zal narsaga egalik qilish shart emas — ba’zilarining borligini tan olishning o‘zi kifoya.</p>
+      <p>Bu hikoyada bir insonning hislari bor. Ammo boshqa insonning qalbida nima borligini faqat uning o‘zi biladi.</p>
+      <p><em>“Balki” — javob emas. U faqat hali bilmagan narsalarimiz borligini tan olishdir.</em></p>
+    </div></div>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" data-next>Maktubni ochish</button><button class="btn soft" data-exit>Shu yerda to‘xtash</button></div>
+  </section>
+
+  <section class="screen hide" data-screen="6">
+    <div class="eyebrow">kichik maktub</div><div class="panel"><div class="icon">✉</div><h2>Senga bir gapim bor.</h2><div class="storytext">
+      <p>Men senga hislarimni aytgandim. Balki kutilmaganda bo‘lgandir, balki nima deyishni bilmagandirsan.</p>
+      <p>Bu sahifani sendan javob olish yoki fikringni o‘zgartirish uchun yaratmadim. Shunchaki, o‘sha hislarni biroz boshqacharoq va ijodiyroq ifodalagim keldi.</p>
+      <p>Hikoyani ko‘rganing uchun rahmat. O‘zingni qanday his qilsang, shunday bo‘lishing mumkin. Javob berishing shart emas.</p>
+    </div><div style="text-align:right;color:var(--gold);font-style:italic;margin-top:20px">— 242767</div></div>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" data-next>Oxirgi kichik tanlov</button><button class="btn soft" data-exit>Yakunlash</button></div>
+  </section>
+
+  <section class="screen hide" data-screen="7">
+    <div class="eyebrow">hikoyadan keyin</div><div class="moon" aria-hidden="true" style="width:80px;height:80px;margin-bottom:24px"></div>
+    <h2>Qaysi qismi senga ko‘proq yoqdi?</h2><p class="copy" style="font-size:15px">Bu savol faqat sayt haqida — hech qanday shaxsiy hislaringni so‘ramaydi.</p>
+    <div class="choices" id="favChoices">
+      <button class="choice" data-fav="visual"><span class="emoji">🌌</span><span>Oyli osmon va dizayn</span></button>
+      <button class="choice" data-fav="story"><span class="emoji">📚</span><span>Xotiralar hikoyasi</span></button>
+      <button class="choice" data-fav="question"><span class="emoji">✨</span><span>Kichik interaktiv savol</span></button>
+      <button class="choice" data-fav="none"><span class="emoji">🤍</span><span>Shunchaki ko‘rib chiqdim</span></button>
+    </div>
+    <div id="favResult" class="result hide" aria-live="polite"></div>
+    <p class="note">Javob saytda saqlanmaydi va hech kimga yuborilmaydi.</p>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" data-next>Yakun</button><button class="btn soft" data-restart>Boshidan ko‘rish</button></div>
+  </section>
+
+  <section class="screen hide hero" data-screen="8">
+    <div class="moon" aria-hidden="true" style="width:78px;height:78px;margin-bottom:26px"></div>
+    <div class="eyebrow">yakun</div><h1>Ba’zi hikoyalar<br>xotirada qoladi.</h1>
+    <p class="copy">Vaqtingni ajratganing uchun rahmat. Umid qilamanki, bu kichik sayohat kuningga ozgina bo‘lsa ham yoqimli kayfiyat qo‘shdi.</p>
+    <div class="actions"><button class="btn primary" data-restart>Yana bir bor ko‘rish</button><button class="btn soft" data-exit>Shu yerda yakunlash</button></div>
+    <p class="footer">Balki… · 242767<br>Yumshoq xotiralar, erkin tanlov.</p>
+  </section>
+
+  <section class="screen hide hero" data-screen="9">
+    <div class="icon">☁</div><h2>Mayli, shu yerda to‘xtaymiz.</h2><p class="copy">Bu hikoya istagan paytingda tugashi mumkin. Vaqt ajratganing uchun rahmat.</p>
+    <div class="actions"><button class="btn primary" data-restart>Boshidan ko‘rish</button></div>
+  </section>
+</div></main>
+<script>
+(()=>{
+ const screens=[...document.querySelectorAll('[data-screen]')];let current=0;
+ function show(n){current=n;screens.forEach((s,i)=>{s.classList.toggle('hide',i!==n);if(i===n){s.classList.remove('screen');void s.offsetWidth;s.classList.add('screen')}});document.querySelectorAll('.progress span').forEach(x=>x.style.width=(n>=1&&n<=6?Math.min(100,(n/6)*100):0)+'%');window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+ document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>show(Math.min(current+1,8))));
+ document.querySelectorAll('[data-exit]').forEach(b=>b.addEventListener('click',()=>show(9)));
+ document.querySelectorAll('[data-restart]').forEach(b=>b.addEventListener('click',()=>show(0)));
+ const moodTexts={moon:'Oy va musiqa — sokin kechalar ba’zan eng yoqimli tanaffus bo‘ladi. 🌙',book:'Kitob tanlovi! Har bir hikoya boshqa bir olamga eshik ochadi. 📖',walk:'Kechki sayr — fikrlarni tartibga solish uchun yoqimli usul. 🌃',laugh:'Kayfiyatni kulgi bilan ko‘tarish ham kichik mo‘jiza. ✨'};
+ document.querySelectorAll('[data-choice]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-choice]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');const r=document.getElementById('moodResult');r.textContent=moodTexts[b.dataset.choice];r.classList.remove('hide')}));
+ const favTexts={visual:'Oyli osmon yaxshi tanlov — sokinlikning ham o‘z jozibasi bor. 🌌',story:'Xotiralar ba’zan oddiy lahzalarni ham qadrli qiladi. 📚',question:'Kichik savollar ba’zan katta tabassum keltiradi. ✨',none:'Ko‘rib chiqqaningning o‘zi yetarli. Rahmat! 🤍'};
+ document.querySelectorAll('[data-fav]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-fav]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');const r=document.getElementById('favResult');r.textContent=favTexts[b.dataset.fav];r.classList.remove('hide')}));
+ // Decorative starfield. No tracking, cookies, storage, or network requests.
+ const c=document.getElementById('sky'),ctx=c.getContext('2d');let stars=[];
+ function resize(){const d=Math.min(devicePixelRatio||1,2);c.width=innerWidth*d;c.height=innerHeight*d;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';ctx.setTransform(d,0,0,d,0,0);stars=Array.from({length:Math.max(40,Math.floor(innerWidth/7))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.2+.2,a:Math.random()*.4+.12,p:Math.random()*6.28}));draw(0)}
+ function draw(t){ctx.clearRect(0,0,innerWidth,innerHeight);for(const s of stars){ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(229,237,255,${Math.max(.04,s.a+Math.sin(t/1200+s.p)*.1)})`;ctx.fill()}if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(draw)}
+ resize();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(draw);addEventListener('resize',resize);
+})();
+</script>
+</body></html>
