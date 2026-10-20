@@ -207,12 +207,12 @@ p{margin:0 0 1.1rem}
   <section class="view" data-v="letter" hidden>
     <p class="eyebrow">242767 dan</p>
     <h2>Uzoqdan tanish</h2>
-    <p>Seni birinchi marta opangning uyida ko‘rganman. Uning uyi bizning uyimizning yonida edi, sen unga yordamga kelgan eding. Hovuzdan chelakda suv tashib yurarding. Oddiygina bir lahza edi, lekin negadir yuragimda qolib ketdi.</p>
-    <p>Bu taxminan 2021-yil atrofida edi, aniq eslay olmayman. Oradan ancha vaqt o‘tdi. Seni yaxshi tanimayman, lekin ko‘rgan paytlarimni va kulishingni eslayman.</p>
+    <p>Sizni birinchi marta uyimiz oldida ko‘rganman. O'shanda opanglaga yordamga kelganding. Hovuzdan chelakda suv tashib yurarding. Oddiygina bir lahza edi, lekin negadir esimda qolib ketdi.</p>
+    <p>Bu taxminan 2021-yil atrofida edi, aniq eslay olmayman. Oradan ancha vaqt o‘tdi. Sizni yaxshi tanimayman, lekin ko‘rgan paytlarimni va kulishingni eslayman.</p>
     <div class="pull">Ba’zi go‘zal narsalarni uzoqdan ko‘rib, ularning borligini tan olish mumkin.</div>
     <p>Bu sahifa sendan hech narsa so‘ramaydi. Umid qilaman, ozgina bo‘lsa ham kulib qo‘yding. Shu men uchun yetarli. Javob shart emas.</p>
     <p class="sign">— <button class="nm" type="button">242767</button></p>
-    <div class="row"><button class="btn quiet" data-go="hub">Osmonga qaytish</button></div>
+    <div class="row"><button class="btn quiet" data-go="hub">Orga qaytish</button></div>
   </section>
 </div>
 
@@ -281,10 +281,10 @@ p{margin:0 0 1.1rem}
   /* ---------- Birth moon ---------- */
   var months=["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentabr","oktabr","noyabr","dekabr"];
   var birthTexts={
-    "Yangi oy":"Sen osmon eng sirli va sokin paytida tug‘ilgansan. Yangi oy har doim yangi boshlanishni anglatadi.",
+    "Yangi oy":"Siz osmon eng sirli va sokin paytida tug‘ilgansan. Yangi oy har doim yangi boshlanishni anglatadi.",
     "O‘sib borayotgan hilol":"Sen ingichka, lekin kundan-kunga yorqinlashayotgan oy ostida tug‘ilgansan. Nur endi boshlanayotgan edi.",
     "Birinchi chorak":"Sen oyning yarmi yorug‘ bo‘lgan kuni tug‘ilgansan. Bu qat’iyat va harakat fasli.",
-    "O‘sayotgan oy":"Sen oy to‘lishga intilayotgan paytda tug‘ilgansan. Osmon sekin yorishib borayotgan edi.",
+    "O‘sayotgan oy":"Sizn oy to‘lishga intilayotgan paytda tug‘ilgansan. Osmon sekin yorishib borayotgan edi.",
     "To‘lin oy":"Sen osmon eng yorqin bo‘lgan kechada tug‘ilgansan. To‘lin oy ostida tug‘ilganlar ko‘pincha chiroyli ertaklarga kiradi.",
     "Kamayotgan oy":"Sen oy o‘z nurini sekin ulashayotgan paytda tug‘ilgansan. Bu xotirjam va mulohazali fasl.",
     "Oxirgi chorak":"Sen oyning yarmi yana soyaga o‘tayotgan kuni tug‘ilgansan. Muvozanat paytida.",
